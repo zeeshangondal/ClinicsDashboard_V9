@@ -1,0 +1,333 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  
+  /* Craft AI Primary - Teal Blue #006572 */
+  --primary: oklch(0.38 0.08 200);
+  --primary-foreground: oklch(0.985 0 0);
+  
+  /* Craft AI Secondary - Yellow #f8cb0c */
+  --secondary: oklch(0.85 0.15 85);
+  --secondary-foreground: oklch(0.145 0 0);
+  
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.85 0.15 85); /* Craft AI Yellow */
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.38 0.08 200); /* Craft AI Teal */
+  
+  /* Chart colors using Craft AI palette */
+  --chart-1: oklch(0.38 0.08 200); /* Teal */
+  --chart-2: oklch(0.85 0.15 85);  /* Yellow */
+  --chart-3: oklch(0.6 0.118 184.704); /* Blue */
+  --chart-4: oklch(0.828 0.189 84.429); /* Light Green */
+  --chart-5: oklch(0.769 0.188 70.08);  /* Orange */
+  
+  /* Sidebar with Craft AI Teal */
+  --sidebar: oklch(0.38 0.08 200);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.85 0.15 85); /* Yellow accent */
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-accent: oklch(0.45 0.08 200); /* Lighter teal */
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.45 0.08 200);
+  --sidebar-ring: oklch(0.85 0.15 85);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.45 0.08 200); /* Lighter teal for dark mode */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.8 0.15 85); /* Slightly darker yellow */
+  --secondary-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.8 0.15 85);
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.45 0.08 200);
+  --chart-1: oklch(0.45 0.08 200);
+  --chart-2: oklch(0.8 0.15 85);
+  --chart-3: oklch(0.696 0.17 162.48);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.35 0.08 200);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.8 0.15 85);
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-accent: oklch(0.4 0.08 200);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.8 0.15 85);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 1.375rem;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  button, input, select, textarea {
+    font-size: 0.875rem;
+  }
+}
+
+/* Custom Craft AI styles */
+.craft-ai-gradient {
+  background: linear-gradient(135deg, #f8cb0c 0%, #006572 100%);
+}
+
+.craft-ai-teal {
+  background-color: #006572;
+}
+
+.craft-ai-yellow {
+  background-color: #f8cb0c;
+}
+
+.craft-ai-text-teal {
+  color: #006572;
+}
+
+.craft-ai-text-yellow {
+  color: #f8cb0c;
+}
+
+.craft-ai-border-teal {
+  border-color: #006572;
+}
+
+.craft-ai-border-yellow {
+  border-color: #f8cb0c;
+}
+
+/* Fixed background for login */
+.login-background {
+  background-color: #006572;
+  position: relative;
+}
+
+.login-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(135deg, rgba(248, 203, 12, 0.05) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(248, 203, 12, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(248, 203, 12, 0.05) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(248, 203, 12, 0.05) 25%, transparent 25%);
+  background-position: 40px 0, 40px 0, 0 0, 0 0;
+  background-size: 80px 80px;
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Status indicators */
+.status-indicator {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+}
+
+.status-active {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-pending {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-inactive {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.status-error {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #006572;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #004d57;
+}
+
+/* Dashboard widgets */
+.dashboard-widget {
+  @apply bg-white rounded-lg shadow-sm border border-gray-100 p-4 transition-all duration-200;
+}
+
+.dashboard-widget:hover {
+  @apply shadow-md;
+}
+
+.dashboard-widget-title {
+  @apply text-sm font-medium text-gray-500 mb-1;
+}
+
+.dashboard-widget-value {
+  @apply text-2xl font-semibold mb-1;
+}
+
+.dashboard-widget-subtitle {
+  @apply text-xs text-gray-400;
+}
+
+/* Compact sidebar */
+.sidebar-compact {
+  @apply w-16 transition-all duration-300;
+}
+
+.sidebar-expanded {
+  @apply w-64 transition-all duration-300;
+}
+
+/* Sleek form controls */
+.form-control-sm {
+  @apply h-8 text-sm px-2.5;
+}
+
+/* Compact tables */
+.table-compact th,
+.table-compact td {
+  @apply py-2 px-3 text-sm;
+}
+
+/* Sleek badges */
+.badge-sm {
+  @apply px-1.5 py-0.5 text-xs font-medium rounded;
+}
+
+/* Sleek buttons */
+.btn-sm {
+  @apply h-8 px-3 text-xs rounded;
+}
+
+/* Sleek cards */
+.card-compact {
+  @apply p-3 rounded-lg;
+}
+
+/* Fix for sidebar spacing */
+.app-container {
+  display: flex;
+}
+
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+}
+
+.content-container {
+  flex: 1;
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    margin-left: 12rem;
+  }
+  
+  .content-container.sidebar-collapsed {
+    margin-left: 3rem;
+  }
+}
+

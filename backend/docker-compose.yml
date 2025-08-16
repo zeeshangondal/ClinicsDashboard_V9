@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  craft-ai-dashboard:
+    build: .
+    container_name: craft-ai-dashboard
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///data/craft_ai.db
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-default-secret-key-change-in-production}
+      - SECRET_KEY=${SECRET_KEY:-default-flask-secret-key-change-in-production}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - craft-ai-network
+
+  # Optional: PostgreSQL database (uncomment to use instead of SQLite)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: craft-ai-postgres
+  #   environment:
+  #     POSTGRES_DB: craft_ai
+  #     POSTGRES_USER: craft_ai_user
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_password_change_me}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+  #   networks:
+  #     - craft-ai-network
+
+  # Optional: Redis for caching (uncomment if needed)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: craft-ai-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - craft-ai-network
+
+  # Optional: Nginx reverse proxy (uncomment for production)
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: craft-ai-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - craft-ai-dashboard
+  #   restart: unless-stopped
+  #   networks:
+  #     - craft-ai-network
+
+networks:
+  craft-ai-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+
